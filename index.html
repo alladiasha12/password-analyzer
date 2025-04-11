@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Analyzer</title>
+    <link rel="stylesheet" href="passwd.css">
+    <link rel="website icon" href="Since 2024.png"/>
+</head>
+<body style="background-image: url(file:///C:/Users/asha2/Downloads/buttefly.webp);">
+    <h1>butterfly</h1>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <div class="container">
+        <div class="row">
+            <div class="form-container">
+                <div class="input-box">
+                    <input type="password" id="password" placeholder="Password">
+                    <button type="submit"><img src="arrow.png" alt="Submit"></button>
+                    <p id="message">Password is&nbsp;<span id="strength"></span></p>
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <div class="footer">
+                <footer style="color: rgb(208, 64, 38);background-color: aqua;">
+                    <span>&nbsp;&nbsp;Created By <a href="https://www.linkedin.com/in/alladi-asha-kranthi-2a670b255?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer">ashu</a> | <img style="width:15px;height: 15px;" src="https://www.pngarts.com/files/3/Copyright-Symbol-Transparent-Image.png"> 2025 All rights reserved&nbsp;&nbsp;<br>
+                        &nbsp;&nbsp;<img style="width: 16px; height: 16px;" src="c:\Users\asha2\Downloads\insta logo.jpeg"><a href="https://www.instagram.com/ms_asha_alladi_/" target="_blank" rel="noreferrer">&nbsp;&nbsp; ms_asha_alladi_</a>
+                    </span>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script> 
+        var pass = document.getElementById("password");
+        var msg = document.getElementById("message");
+        var str = document.getElementById("strength");
+        pass.addEventListener('input', () => {
+            checkPasswordStrength();
+        });
+        function checkPasswordStrength() {
+            const password = pass.value;
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSymbol = /[!@#\$%\^\&*\)\(+=._-]/.test(password);
+            if (password.length > 0) {
+                msg.style.display = "block";
+            } else {
+                msg.style.display = "none";
+            }
+            if (password.length >= 8 && hasLowerCase && hasUpperCase && hasNumber && hasSymbol) {
+                str.innerHTML = "Strong";
+                pass.style.borderColor = "#26d730";
+                msg.style.color = "#26d730";
+            } else if (password.length >= 8 && hasLowerCase && hasUpperCase && hasNumber || password.length >= 8 && hasLowerCase && hasUpperCase && hasSymbol) {
+                str.innerHTML = "Medium";
+                pass.style.borderColor = "yellow";
+                msg.style.color = "yellow";
+            } else {
+                str.innerHTML = "Weak";
+                pass.style.borderColor = "#ff5925";
+                msg.style.color = "#ff5925";
+            }
+        }
+        function disableRightClick(event) {
+            event.preventDefault();
+        }
+        function disableDrag(event) {
+            event.preventDefault();
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.addEventListener('contextmenu', disableRightClick);
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('dragstart', disableDrag);
+            });
+        });
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'u') {
+                event.preventDefault();
+            }
+            if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+                event.preventDefault();
+            }
+            if (event.ctrlKey && event.shiftKey && event.key === 'J') {
+                event.preventDefault();
+            }
+            if (event.key === 'F12') {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
